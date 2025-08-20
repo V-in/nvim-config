@@ -21,6 +21,16 @@ return {
       desc = "Frecency (Smart File Finder)",
     },
     {
+      "<D-f>",
+      "<cmd>Telescope current_buffer_fuzzy_find<cr>",
+      desc = "Search in Current Buffer",
+    },
+    {
+      "<D-S-f>",
+      "<cmd>Telescope live_grep<cr>",
+      desc = "Search in all git tracked files",
+    },
+    {
       "<D-S-p>",
       function()
         Snacks.picker.buffers()

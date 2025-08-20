@@ -23,7 +23,5 @@ vim.api.nvim_create_autocmd("FileType", {
       vim.cmd("nohlsearch")
       vim.cmd("normal! zz")
     end, { buffer = args.buf, desc = "Previous def/defp" })
-
-    print("Test mappings set: <leader>fn and <leader>fp")
   end,
 })
