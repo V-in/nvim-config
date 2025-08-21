@@ -21,7 +21,17 @@ return {
       desc = "Frecency (Smart File Finder)",
     },
     {
+      "<M-p>",
+      "<cmd>Telescope frecency workspace=CWD<cr>",
+      desc = "Frecency (Smart File Finder)",
+    },
+    {
       "<D-f>",
+      "<cmd>Telescope current_buffer_fuzzy_find<cr>",
+      desc = "Search in Current Buffer",
+    },
+    {
+      "<M-f>",
       "<cmd>Telescope current_buffer_fuzzy_find<cr>",
       desc = "Search in Current Buffer",
     },
@@ -29,6 +39,18 @@ return {
       "<D-S-f>",
       "<cmd>Telescope live_grep<cr>",
       desc = "Search in all git tracked files",
+    },
+    {
+      "<M-S-f>",
+      "<cmd>Telescope live_grep<cr>",
+      desc = "Search in all git tracked files",
+    },
+    {
+      "<M-S-p>",
+      function()
+        Snacks.picker.buffers()
+      end,
+      desc = "Commands",
     },
     {
       "<D-S-p>",

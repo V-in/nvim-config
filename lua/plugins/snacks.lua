@@ -9,14 +9,21 @@ return {
       desc = "Toggle Explorer",
     },
     {
-      "<C-Tab>",
+      "<M-b>",
       function()
-        Snacks.picker.buffers()
+        Snacks.explorer()
       end,
-      desc = "Switch Buffer",
+      desc = "Toggle Explorer",
     },
     {
       "<D-w>",
+      function()
+        Snacks.bufdelete()
+      end,
+      desc = "Delete Buffer",
+    },
+    {
+      "<M-w>",
       function()
         Snacks.bufdelete()
       end,
