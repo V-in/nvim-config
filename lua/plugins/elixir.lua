@@ -4,13 +4,13 @@ return {
     opts = {
       servers = {
         elixirls = {
-          enabled = true,
+          enabled = false,
           fetchDeps = false,
           enableTestLenses = true,
           suggestSpecs = true,
         },
         nextls = {
-          enabled = false,
+          enabled = true,
           spitfire = true,
           init_options = {
             mix_env = "dev",
