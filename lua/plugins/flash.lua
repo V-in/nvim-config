@@ -1,6 +1,10 @@
 return {
   "folke/flash.nvim",
-  opts = {},
+  opts = {
+    search = {
+      mode = "search",
+    },
+  },
   config = function(_, opts)
     require("flash").setup(opts)
 
