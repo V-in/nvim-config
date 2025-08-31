@@ -1,16 +1,16 @@
 return {
   "folke/flash.nvim",
   opts = {
+    jump = {
+      register = true,
+      nohlsearch = false,
+    },
     search = {
       mode = "search",
     },
   },
   config = function(_, opts)
     require("flash").setup(opts)
-
-    -- This plays nicely with gruvbox.
-    -- It sets the jump characters to be
-    -- red background and dark letters
 
     vim.api.nvim_set_hl(0, "FlashLabel", {
       fg = "#282828",
