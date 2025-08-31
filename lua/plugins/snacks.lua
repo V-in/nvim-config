@@ -1,35 +1,6 @@
 return {
   "folke/snacks.nvim",
-  keys = {
-    {
-      "<D-b>",
-      function()
-        Snacks.explorer()
-      end,
-      desc = "Toggle Explorer",
-    },
-    {
-      "<M-b>",
-      function()
-        Snacks.explorer()
-      end,
-      desc = "Toggle Explorer",
-    },
-    {
-      "<D-w>",
-      function()
-        Snacks.bufdelete()
-      end,
-      desc = "Delete Buffer",
-    },
-    {
-      "<M-w>",
-      function()
-        Snacks.bufdelete()
-      end,
-      desc = "Delete Buffer",
-    },
-  },
+  keys = {},
   opts = {
     scroll = {
       enabled = true,

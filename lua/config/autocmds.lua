@@ -40,8 +40,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
         vim.fn.setreg("/", yanked_text)
         vim.fn.histadd("search", yanked_text)
         vim.cmd("let &hlsearch = &hlsearch")
-
-        vim.notify("Registered to search: " .. yanked_text, vim.log.levels.INFO)
       end
     end
   end,

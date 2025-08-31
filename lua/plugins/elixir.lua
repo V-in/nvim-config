@@ -21,6 +21,9 @@ return {
               },
             },
           },
+          cmd_env = {
+            SKIP_WBXML = 0,
+          },
         },
       },
     },
@@ -34,7 +37,7 @@ return {
       symbols = {
         show_symbol_details = true,
         show_symbol_lineno = true,
-        icon_fetcher = function(kind, bufnr, symbol)
+        icon_fetcher = function(_, bufnr, symbol)
           local ft = vim.api.nvim_get_option_value("ft", { buf = bufnr })
           if ft == "elixir" and symbol and symbol.elixir_keyword then
             return symbol.elixir_keyword
@@ -54,8 +57,7 @@ return {
       },
     },
     keys = {
-      { "<D-o>", "<cmd>Outline<CR>", desc = "Toggle outline" },
-      { "<A-o>", "<cmd>Outline<CR>", desc = "Toggle outline" },
+      { "<leader>o", "<cmd>Outline<CR>", desc = "Toggle outline" },
     },
   },
 }
