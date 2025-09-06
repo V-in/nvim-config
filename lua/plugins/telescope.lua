@@ -30,5 +30,10 @@ return {
       "<cmd>Telescope live_grep<cr>",
       desc = "Search in all git tracked files",
     },
+    {
+      "<leader><leader>",
+      "<cmd>Telescope buffers<cr>",
+      desc = "Search buffers",
+    },
   },
 }
