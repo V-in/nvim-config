@@ -1,24 +1,49 @@
 return {
-  "nvim-telescope/telescope-frecency.nvim",
+  "nvim-telescope/telescope.nvim",
   dependencies = {
-    "nvim-telescope/telescope.nvim",
+    {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "make",
+    },
   },
   config = function()
-    require("telescope").setup({
+    local telescope = require("telescope")
+
+    telescope.setup({
       extensions = {
-        frecency = {
-          default_workspace = "CWD",
-          matcher = "fuzzy",
+        fzf = {
+          fuzzy = true,
+          override_generic_sorter = true,
+          override_file_sorter = true,
+          case_mode = "smart_case",
         },
       },
     })
-    require("telescope").load_extension("frecency")
+
+    local ok, err = pcall(telescope.load_extension, "fzf")
+    if not ok then
+      vim.notify("Failed to load fzf-native")
+    end
   end,
   keys = {
     {
       "<leader>p",
-      "<cmd>Telescope frecency workspace=CWD<cr>",
-      desc = "Frecency (Smart File Finder)",
+      function()
+        local builtin = require("telescope.builtin")
+        local proximity = require("util.telescope-proximity")
+
+        local proximity_sorter = proximity.create_proximity_sorter({
+          proximity_weight = 0.2, -- 0.0 = pure fuzzy, 1.0 = strong proximity
+          show_debug = false, -- Set to true to see debug output
+          debug_limit = 5,
+        })
+
+        builtin.find_files({
+          sorter = proximity_sorter,
+          max_results = 20,
+        })
+      end,
+      desc = "Find Files (proximity-based)",
     },
     {
       "<leader>ff",
