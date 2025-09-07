@@ -7,6 +7,7 @@ return {
     },
     settings = {
       save_on_toggle = true,
+      save_on_ui_close = true,
     },
   },
   keys = function()
