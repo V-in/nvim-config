@@ -27,6 +27,16 @@ return {
             desc = "Toggle position mark",
             silent = false,
           })
+
+          vim.keymap.set("n", "<leader><BS>", function()
+            if _G.eject_mark_set then
+              pcall(vim.cmd, "delmarks " .. mark_letter)
+              _G.eject_mark_set = false
+            end
+          end, {
+            desc = "Clear eject mark",
+            silent = false,
+          })
         end,
       },
     },

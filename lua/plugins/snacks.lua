@@ -2,6 +2,9 @@ return {
   "folke/snacks.nvim",
   keys = {},
   opts = {
+    scratch = {
+      ft = "markdown",
+    },
     scroll = {
       enabled = true,
       animate = {
