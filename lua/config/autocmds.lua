@@ -9,26 +9,6 @@
 --
 --
 
--- Allow > and < to move between def/defp lines
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "elixir",
-  callback = function(args)
-    local pattern = "\\v^\\s*(def|defp)\\s+\\w+"
-
-    vim.keymap.set("n", ">", function()
-      vim.cmd("/" .. pattern)
-      vim.cmd("nohlsearch")
-      vim.cmd("normal! zz")
-    end, { buffer = args.buf, desc = "Next def/defp" })
-
-    vim.keymap.set("n", "<", function()
-      vim.cmd("?" .. pattern)
-      vim.cmd("nohlsearch")
-      vim.cmd("normal! zz")
-    end, { buffer = args.buf, desc = "Previous def/defp" })
-  end,
-})
-
 -- After yanking text with change, add it to search history so that you can
 -- change the next occurencies easily
 vim.api.nvim_create_autocmd("TextYankPost", {

@@ -46,7 +46,7 @@ return {
         end,
       },
       preview_window = {
-        auto_preview = true,
+        auto_preview = false,
       },
       outline_items = {
         show_symbol_details = true,
