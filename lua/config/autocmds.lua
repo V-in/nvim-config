@@ -24,3 +24,9 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     end
   end,
 })
+
+vim.api.nvim_create_autocmd("DiagnosticChanged", {
+  callback = function()
+    vim.diagnostic.setqflist({ open = false })
+  end,
+})
