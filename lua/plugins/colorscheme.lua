@@ -7,7 +7,6 @@ return {
         dark0_hard = "#000000",
       },
       overrides = {
-        -- Clear most syntax highlighting
         Keyword = { fg = "NONE" },
         Number = { fg = "NONE" },
         Constant = { fg = "NONE" },
@@ -37,6 +36,16 @@ return {
         ["@constant"] = { fg = "#a89984" },
         ["@symbol"] = { fg = "#a89984" }, -- atoms
         ["@comment"] = { fg = "#928374", italic = true },
+        -- Disable markdown highlighting inside comments
+        ["@markup.heading.1.markdown"] = { fg = "#928374", italic = true },
+        ["@markup.heading.2.markdown"] = { fg = "#928374", italic = true },
+        ["@markup.heading.3.markdown"] = { fg = "#928374", italic = true },
+        ["@markup.heading.4.markdown"] = { fg = "#928374", italic = true },
+        ["@markup.heading.5.markdown"] = { fg = "#928374", italic = true },
+        ["@markup.heading.6.markdown"] = { fg = "#928374", italic = true },
+        ["@markup.bold.markdown"] = { fg = "#928374", italic = true },
+        ["@markup.italic.markdown"] = { fg = "#928374", italic = true },
+        ["@string.special.symbol.elixir"] = { fg = "NONE", italic = true },
       },
     },
   },
