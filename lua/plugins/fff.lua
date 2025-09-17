@@ -1,20 +1,16 @@
 return {
   "dmtrKovalenko/fff.nvim",
   build = "cargo build --release",
-  -- or if you are using nixos
-  -- build = "nix run .#release",
-  opts = { -- (optional)
+  opts = {
     debug = {
-      enabled = true, -- we expect your collaboration at least during the beta
-      show_scores = true, -- to help us optimize the scoring system, feel free to share your scores!
+      enabled = true,
+      show_scores = true,
     },
   },
-  -- No need to lazy-load with lazy.nvim.
-  -- This plugin initializes itself lazily.
   lazy = false,
   keys = {
     {
-      "<leader><leader>", -- try it if you didn't it is a banger keybinding for a picker
+      "<leader><leader>",
       function()
         require("fff").find_files()
       end,

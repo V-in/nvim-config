@@ -1,8 +1,10 @@
 return {
   "aaronik/treewalker.nvim",
   keys = {
-    { "<", "<cmd>Treewalker Up<cr>", mode = "n", desc = "Treewalker Up" },
-    { ">", "<cmd>Treewalker Down<cr>", mode = "n", desc = "Treewalker Down" },
+    { "<", "<cmd>Treewalker Up<cr>zz", mode = "n", desc = "Treewalker Up" },
+    { ">", "<cmd>Treewalker Down<cr>zz", mode = "n", desc = "Treewalker Down" },
   },
-  opts = {},
+  opts = {
+    highlight = false,
+  },
 }
