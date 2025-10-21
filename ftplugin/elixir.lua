@@ -89,4 +89,5 @@ vim.keymap.set(
   { buffer = true, desc = "Go to handle_params function" }
 )
 vim.keymap.set("n", "gtm", go_to_pattern("^\\s*def mount("), { buffer = true, desc = "Go to mount function" })
+vim.keymap.set("n", "gte", go_to_pattern("^\\s*def handle_event("), { buffer = true, desc = "Go to handle_event" })
 vim.keymap.set("n", "gth", go_to_header, { buffer = true, desc = "Go to header (after aliases or moduledoc)" })

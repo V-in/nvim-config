@@ -50,24 +50,3 @@ return {
     },
   },
 }
-
--- Experimenting fff.nvim for now
--- {
---   "<leader>p",
---   function()
---     local builtin = require("telescope.builtin")
---     local proximity = require("util.telescope-proximity")
---
---     local proximity_sorter = proximity.create_proximity_sorter({
---       proximity_weight = 0.2, -- 0.0 = pure fuzzy, 1.0 = strong proximity
---       show_debug = false, -- Set to true to see debug output
---       debug_limit = 5,
---     })
---
---     builtin.find_files({
---       sorter = proximity_sorter,
---       max_results = 20,
---     })
---   end,
---   desc = "Find Files (proximity-based)",
--- },
