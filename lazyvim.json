@@ -2,6 +2,7 @@
   "extras": [
     "lazyvim.plugins.extras.editor.outline",
     "lazyvim.plugins.extras.formatting.prettier",
+    "lazyvim.plugins.extras.lang.clojure",
     "lazyvim.plugins.extras.lang.elixir",
     "lazyvim.plugins.extras.test.core"
   ],
