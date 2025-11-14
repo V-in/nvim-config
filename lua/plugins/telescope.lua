@@ -39,6 +39,16 @@ return {
       desc = "Search in Current Buffer",
     },
     {
+      "<leader>/",
+      function()
+        require("telescope.builtin").current_buffer_fuzzy_find({
+          fuzzy = false,
+          skip_empty_lines = true,
+        })
+      end,
+      desc = "Search current buffer (non-fuzzy)",
+    },
+    {
       "<leader>fF",
       "<cmd>Telescope live_grep<cr>",
       desc = "Search in all git tracked files",
