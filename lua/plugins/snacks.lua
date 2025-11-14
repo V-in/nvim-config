@@ -1,6 +1,11 @@
 return {
   "folke/snacks.nvim",
-  keys = {},
+  keys = function(_, keys)
+    -- Drop LazyVim's default <leader>fF file finder so our telescope live_grep wins
+    return vim.tbl_filter(function(key)
+      return key[1] ~= "<leader>fF"
+    end, keys)
+  end,
   opts = {
     scratch = {
       ft = "markdown",

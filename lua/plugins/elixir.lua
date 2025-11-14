@@ -10,7 +10,7 @@ return {
           suggestSpecs = true,
         },
         nextls = {
-          enabled = true,
+          enabled = false,
           spitfire = true,
           init_options = {
             mix_env = "dev",
