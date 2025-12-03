@@ -8,6 +8,8 @@ return {
   },
   config = function()
     local telescope = require("telescope")
+    local actions = require("telescope.actions")
+    local builtin = require("telescope.builtin")
 
     telescope.setup({
       extensions = {
@@ -24,6 +26,20 @@ return {
     if not ok then
       vim.notify("Failed to load fzf-native")
     end
+
+    -- Stock live_grep with built-in refine (<C-Space> opens a filter over the current results).
+    local function live_grep_with_refine()
+      builtin.live_grep({
+        attach_mappings = function(_, map)
+          -- <C-Space> is often <Nul> in terminals; also provide <C-f> as a reliable fallback
+          map("i", "<c-space>", actions.to_fuzzy_refine)
+          map("i", "<c-@>", actions.to_fuzzy_refine) -- some terms send <Nul> for Ctrl-Space
+          map("i", "<c-f>", actions.to_fuzzy_refine)
+          return true
+        end,
+      })
+    end
+    vim.g.LiveGrepPathFilter = live_grep_with_refine
   end,
   keys = function(_, keys)
     -- Drop any LazyVim default for <leader>fF so this always runs live_grep
@@ -56,8 +72,10 @@ return {
       },
       {
         "<leader>fF",
-        "<cmd>Telescope live_grep<cr>",
-        desc = "Search in all git tracked files",
+        function()
+          vim.g.LiveGrepPathFilter()
+        end,
+        desc = "Live grep (text + path filter)",
       },
       {
         "<leader><leader>",
