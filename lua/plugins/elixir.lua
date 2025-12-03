@@ -5,26 +5,23 @@ return {
       servers = {
         elixirls = {
           enabled = false,
-          fetchDeps = false,
-          enableTestLenses = true,
-          suggestSpecs = true,
         },
         nextls = {
           enabled = false,
-          spitfire = true,
-          init_options = {
-            mix_env = "dev",
-            mix_target = "host",
-            experimental = {
-              completions = {
-                enable = true,
-              },
-            },
-          },
-          cmd_env = {
-            SKIP_WBXML = 0,
-          },
         },
+        expert = {},
+      },
+      setup = {
+        expert = function()
+          vim.lsp.config("expert", {
+            cmd = { "expert", "--stdio" },
+            cmd_env = { SKIP_WBXML = "0" },
+            root_markers = { "mix.exs", ".git" },
+            filetypes = { "elixir", "eelixir", "heex" },
+          })
+          vim.lsp.enable("expert")
+          return true
+        end,
       },
     },
   },
