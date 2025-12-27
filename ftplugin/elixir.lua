@@ -1,5 +1,43 @@
 local testing = require("util.testing")
 
+-- Elixir-specific monochrome highlight overrides
+local monochrome_groups = {
+  Keyword = { fg = "NONE" },
+  Number = { fg = "NONE" },
+  Constant = { fg = "NONE" },
+  Function = { fg = "NONE" },
+  Identifier = { fg = "NONE" },
+  Type = { fg = "NONE" },
+  Statement = { fg = "NONE" },
+  PreProc = { fg = "NONE" },
+  Special = { fg = "NONE" },
+  Operator = { fg = "NONE" },
+  Boolean = { fg = "NONE" },
+  Character = { fg = "NONE" },
+  Conditional = { fg = "NONE" },
+  Repeat = { fg = "NONE" },
+  Label = { fg = "NONE" },
+  Exception = { fg = "NONE" },
+  Comment = { fg = "#928374", italic = true },
+  String = { fg = "#a89984" },
+  Delimiter = { fg = "NONE" },
+  ["@keyword.conditional"] = { fg = "NONE" },
+  ["@keyword.repeat"] = { fg = "NONE" },
+  ["@keyword.operator"] = { fg = "NONE" },
+  ["@punctuation.bracket"] = { fg = "NONE" },
+  ["@string"] = { fg = "#a89984" },
+  ["@atom"] = { fg = "#a89984" },
+  ["@constant.atom"] = { fg = "#a89984" },
+  ["@constant"] = { fg = "#a89984" },
+  ["@symbol"] = { fg = "#a89984" },
+  ["@comment"] = { fg = "#928374", italic = true },
+  ["@string.special.symbol.elixir"] = { fg = "NONE", italic = true },
+}
+
+for group, opts in pairs(monochrome_groups) do
+  vim.api.nvim_set_hl(0, group, opts)
+end
+
 vim.api.nvim_buf_create_user_command(0, "TestCurrentLineInTmux", function()
   local current_file = vim.fn.expand("%:p")
   local current_line = vim.fn.line(".")
