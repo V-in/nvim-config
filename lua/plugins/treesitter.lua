@@ -6,6 +6,13 @@ return {
       "heex",
       "html",
       "eex",
+      "json",
+      "lua",
+      "vim",
+      "vimdoc",
+      "markdown",
+      "markdown_inline",
+      "bash",
     },
     highlight = {
       enable = true,
