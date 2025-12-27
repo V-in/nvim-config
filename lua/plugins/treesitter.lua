@@ -13,6 +13,9 @@ return {
       "markdown",
       "markdown_inline",
       "bash",
+      "typescript",
+      "tsx",
+      "javascript",
     },
     highlight = {
       enable = true,
