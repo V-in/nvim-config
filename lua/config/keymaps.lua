@@ -19,3 +19,19 @@ end, { desc = "Copy file path" })
 
 -- Git
 vim.keymap.set("n", "<leader>fg", "<cmd>Telescope git_status<cr>", { desc = "Git status" })
+
+vim.keymap.set("n", "<leader>fG", function()
+  local files = vim.fn.systemlist('jj diff -r "trunk()..@" --name-only --no-pager')
+  require("telescope.pickers")
+    .new({}, {
+      prompt_title = "Changed Files (trunk..@)",
+      finder = require("telescope.finders").new_table({ results = files }),
+      sorter = require("telescope.config").values.file_sorter(),
+      previewer = require("telescope.previewers").new_termopen_previewer({
+        get_command = function(entry)
+          return { "jj", "diff", "-r", "trunk()..@", entry.value }
+        end,
+      }),
+    })
+    :find()
+end, { desc = "JJ changed files" })
