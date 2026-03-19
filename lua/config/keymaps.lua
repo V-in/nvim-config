@@ -17,11 +17,22 @@ vim.keymap.set("n", "<leader>cf", function()
   vim.notify("Copied: " .. path)
 end, { desc = "Copy file path" })
 
+-- Copy current jj revision diff to clipboard
+vim.keymap.set("n", "<leader>cjr", function()
+  local diff = vim.fn.system({ "jj", "diff", "-r", "@", "--no-pager" })
+  if vim.v.shell_error ~= 0 then
+    vim.notify("jj diff failed: " .. diff, vim.log.levels.ERROR)
+    return
+  end
+  vim.fn.setreg("+", diff)
+  vim.notify("Copied jj diff (@)")
+end, { desc = "Copy jj revision diff" })
+
 -- Git
 vim.keymap.set("n", "<leader>fg", "<cmd>Telescope git_status<cr>", { desc = "Git status" })
 
 vim.keymap.set("n", "<leader>fG", function()
-  local files = vim.fn.systemlist('jj diff -r "trunk()..@" --name-only --no-pager')
+  local files = vim.fn.systemlist("jj diff --from main --name-only --no-pager")
   require("telescope.pickers")
     .new({}, {
       prompt_title = "Changed Files (trunk..@)",
@@ -29,9 +40,22 @@ vim.keymap.set("n", "<leader>fG", function()
       sorter = require("telescope.config").values.file_sorter(),
       previewer = require("telescope.previewers").new_termopen_previewer({
         get_command = function(entry)
-          return { "jj", "diff", "-r", "trunk()..@", entry.value }
+          return { "jj", "diff", "--from", "main", entry.value }
         end,
       }),
     })
     :find()
 end, { desc = "JJ changed files" })
+
+vim.keymap.set("n", "<leader>gm", function()
+  local gs = require("gitsigns")
+  if vim.b.my_gitsigns_base == "main" then
+    gs.change_base(nil, true) -- reset to default
+    vim.b.my_gitsigns_base = nil
+    vim.notify("gitsigns: default base")
+  else
+    gs.change_base("main", true) -- diff against main
+    vim.b.my_gitsigns_base = "main"
+    vim.notify("gitsigns: base = main")
+  end
+end, { desc = "Toggle gitsigns base (main vs default)" })

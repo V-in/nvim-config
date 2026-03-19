@@ -34,9 +34,38 @@ local monochrome_groups = {
   ["@string.special.symbol.elixir"] = { fg = "NONE", italic = true },
 }
 
-for group, opts in pairs(monochrome_groups) do
-  vim.api.nvim_set_hl(0, group, opts)
+local function apply_monochrome()
+  for group, opts in pairs(monochrome_groups) do
+    vim.api.nvim_set_hl(0, group, opts)
+  end
 end
+
+local function restore_colors()
+  local current = vim.g.colors_name
+  if current and current ~= "" then
+    vim.cmd.colorscheme(current)
+  end
+end
+
+if vim.g.elixir_monochrome == nil then
+  vim.g.elixir_monochrome = true
+end
+
+if vim.g.elixir_monochrome then
+  apply_monochrome()
+end
+
+vim.keymap.set("n", "<leader>um", function()
+  if vim.g.elixir_monochrome then
+    vim.g.elixir_monochrome = false
+    restore_colors()
+    vim.notify("elixir: default colors")
+  else
+    vim.g.elixir_monochrome = true
+    apply_monochrome()
+    vim.notify("elixir: monochrome")
+  end
+end, { buffer = true, desc = "Toggle elixir monochrome" })
 
 vim.api.nvim_buf_create_user_command(0, "TestCurrentLineInTmux", function()
   local current_file = vim.fn.expand("%:p")

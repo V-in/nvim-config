@@ -15,7 +15,6 @@ return {
         expert = function()
           vim.lsp.config("expert", {
             cmd = { "expert", "--stdio" },
-            cmd_env = { SKIP_WBXML = "0" },
             root_markers = { "mix.exs", ".git" },
             filetypes = { "elixir", "eelixir", "heex" },
           })
